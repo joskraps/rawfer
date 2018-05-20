@@ -59,6 +59,6 @@
     <Folder Include="Properties" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="RawferDB.publish.xml" />
+    <None Include="RawferDB-local.publish.xml" />
   </ItemGroup>
 </Project>
