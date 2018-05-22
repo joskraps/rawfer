@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Blazor.Browser.Rendering;
+﻿using BlazorRedux;
+using Microsoft.AspNetCore.Blazor.Browser.Rendering;
 using Microsoft.AspNetCore.Blazor.Browser.Services;
-using Microsoft.Extensions.DependencyInjection;
-using System;
+using Rawfer.Client.Logic;
 
 namespace Rawfer.Client
 {
@@ -11,8 +11,10 @@ namespace Rawfer.Client
         {
             var serviceProvider = new BrowserServiceProvider(services =>
             {
-                // Add any custom services here
+                services.AddReduxStore<RawferState, IAction>(new RawferState(), Reducers.RootReducer);
             });
+
+
 
             new BrowserRenderer(serviceProvider).AddComponent<App>("app");
         }

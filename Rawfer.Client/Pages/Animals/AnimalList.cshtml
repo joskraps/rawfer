@@ -1,3 +1,43 @@
 ﻿@page "/animals"
+@inherits RawferAppComponent
+@inject HttpClient Http
 
 <h1>Animals</h1>
+
+@if (State.Animals != null)
+{
+<button onclick=@(async () => await ActionCreators.LoadAnimals(Store.Dispatch, Http))>Reload animals</button>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var a in State.Animals)
+            {
+                <tr>
+                    <td>@a.Id</td>
+                    <td>@a.Name</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Loading animals...</p>
+}
+
+
+
+@functions
+{
+
+protected override async Task OnInitAsync()
+{
+    await ActionCreators.LoadAnimals(Store.Dispatch, Http);
+}
+}
