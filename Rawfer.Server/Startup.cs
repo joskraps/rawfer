@@ -5,8 +5,11 @@ using Microsoft.AspNetCore.Blazor.Server;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.ResponseCompression;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Serialization;
+using Rawfer.Business;
+using Rawfer.Repository;
 using System.Linq;
 using System.Net.Mime;
 
@@ -14,6 +17,16 @@ namespace Rawfer.Server
 {
     public class Startup
     {
+        public Startup(IConfiguration config)
+        {
+            // Configuration from appsettings.json has already been loaded by
+            // CreateDefaultBuilder on WebHost in Program.cs. Use DI to load
+            // the configuration into the Configuration property.
+            Configuration = config;
+        }
+
+        public IConfiguration Configuration { get; set; }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
@@ -31,6 +44,11 @@ namespace Rawfer.Server
                     WasmMediaTypeNames.Application.Wasm,
                 });
             });
+            services.AddSingleton(new ConnectionConfig() { DbConnection = Configuration["DbConnection"] });
+            services.AddScoped<IConnectionWrapper, ConnectionWrapper>();
+            services.AddScoped<IAnimalService, AnimalService>();
+            services.AddScoped<IAnimalRepository, AnimalRepository>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

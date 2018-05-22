@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Rawfer.Business\Rawfer.Business.csproj" />
     <ProjectReference Include="..\Rawfer.Client\Rawfer.Client.csproj" />
     <ProjectReference Include="..\Rawfer.Shared\Rawfer.Shared.csproj" />
   </ItemGroup>

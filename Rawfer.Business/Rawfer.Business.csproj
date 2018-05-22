@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Rawfer.Repository\Rawfer.Repository.csproj" />
+    <ProjectReference Include="..\Rawfer.Shared\Rawfer.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,9 +1,9 @@
 ﻿using BlazorRedux;
-using Microsoft.AspNetCore.Blazor;
 using Rawfer.Shared;
-using System;
+using Microsoft.AspNetCore.Blazor;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Blazor.Services;
 
 namespace Rawfer.Client.Logic
 {
@@ -13,12 +13,26 @@ namespace Rawfer.Client.Logic
         {
             dispatch(new LoadAnimalsAction());
 
-            var animals = await http.GetJsonAsync<Animal[]>("/api/animals/GetAnimals");
-            Console.WriteLine(animals);
-            dispatch(new ReceiverAnimalsAction
+            var animals = await http.GetJsonAsync<Animal[]>("/api/animals");
+
+            dispatch(new ReceiveAnimalsAction
             {
                 Animals = animals
             });
+        }
+
+        public static async Task AddAnimal(Dispatcher<IAction> dispatch, HttpClient http, Animal animalToAdd, IUriHelper helper)
+        {
+            await http.PostJsonAsync("/api/animals", animalToAdd);
+
+            helper.NavigateTo("/animals");
+            dispatch(new LoadAnimalsAction());
+        }
+
+        public static void Cancel(Dispatcher<IAction> dispatch, IUriHelper helper)
+        {
+            dispatch(new CancelAddAction());
+            helper.NavigateTo("/animals");
         }
     }
 }

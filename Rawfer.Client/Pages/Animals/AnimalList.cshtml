@@ -3,28 +3,24 @@
 @inject HttpClient Http
 
 <h1>Animals</h1>
+<a href="/addanimal" class="btn btn-primary btn-sm" role="button">Create New Animal</a>
 
 @if (State.Animals != null)
 {
-<button onclick=@(async () => await ActionCreators.LoadAnimals(Store.Dispatch, Http))>Reload animals</button>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-            </tr>
-        </thead>
-        <tbody>
+    <hr />
+    <button type="button" class="btn btn-secondary btn-sm" onclick=@LoadAnimals>Reload</button>
+    <hr />
+    <div class="container-fluid">
+        <div class="row">
             @foreach (var a in State.Animals)
             {
-                <tr>
-                    <td>@a.Id</td>
-                    <td>@a.Name</td>
-                </tr>
+                <div class="col-md-auto">
+                    <AnimalCard animal=@a />
+                </div>
             }
-        </tbody>
-    </table>
+        </div>
+
+    </div>
 }
 else
 {
@@ -37,6 +33,11 @@ else
 {
 
 protected override async Task OnInitAsync()
+{
+    await ActionCreators.LoadAnimals(Store.Dispatch, Http);
+}
+
+protected async Task LoadAnimals()
 {
     await ActionCreators.LoadAnimals(Store.Dispatch, Http);
 }

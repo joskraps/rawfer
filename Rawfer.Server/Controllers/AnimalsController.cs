@@ -1,31 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Rawfer.Business;
 using Rawfer.Shared;
 
 namespace Rawfer.Server.Controllers
 {
-    
+    [Produces("application/json")]
     [Route("api/animals")]
     public class AnimalsController : Controller
     {
-        [Produces("application/json")]
-        [HttpGet("[action]")]
+        private IAnimalService animalService;
+
+        public AnimalsController(IAnimalService animalService)
+        {
+            this.animalService = animalService;
+        }
+
+        [HttpGet("")]
         public IEnumerable<Animal> GetAnimals()
         {
-            var rng = new Random();
+            return animalService.GetAnimals();
+        }
 
-            return new List<Animal>()
-            {
-                new Animal
-                {
-                    Id = rng.Next(1,100),
-                    Name="Auriel"
-                }
-            };
+        [HttpPost("")]
+        public void AddAnimal([FromBody] Animal animal)
+        {
+            animalService.AddAnimal(animal);
         }
     }
 }

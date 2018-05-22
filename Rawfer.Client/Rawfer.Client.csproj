@@ -13,6 +13,7 @@
     <PackageReference Include="Blazor-Redux" Version="0.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor.Browser" Version="0.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="0.3.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Extensions" Version="2.0.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,6 +34,26 @@
 
   <ItemGroup>
     <BlazorGenerate Remove="Pages\Sources\Sources.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <BlazorGenerate Remove="Pages\Animals\AnimalCard.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <BlazorGenerate Remove="Pages\Animals\AnimalForm.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <BlazorGenerate Remove="Pages\Account\SignIn.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Pages\Account\SignIn.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Pages\Account\SignIn.cshtml" />
   </ItemGroup>
 
 </Project>

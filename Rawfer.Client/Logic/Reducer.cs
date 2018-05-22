@@ -25,7 +25,7 @@ namespace Rawfer.Client.Logic
             {
                 case ClearAnimalsAction _:
                     return null;
-                case ReceiverAnimalsAction a:
+                case ReceiveAnimalsAction a:
                     return a.Animals;
                 default:
                     return animals;

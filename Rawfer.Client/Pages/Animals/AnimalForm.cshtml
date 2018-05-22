@@ -1,0 +1,60 @@
+﻿@page "/addanimal"
+@using Rawfer.Shared
+@inherits RawferAppComponent
+@inject Microsoft.AspNetCore.Blazor.Services.IUriHelper UriHelper
+@inject HttpClient Http
+
+<form>
+    <div class="form-group">
+        <label for="animalName">Name</label>
+        <input type="text" class="form-control" id="animalName" placeholder="Enter name" bind="@animal.Name" />
+    </div>
+    <div class="form-group">
+        <label for="animalBreed">Breed</label>
+        <input type="text" class="form-control" id="animalBreed" placeholder="Enter breed" bind="@animal.Breed" />
+    </div>
+    <div class="form-group">
+        <label for="animalWeight">Weight</label>
+        <input type="number" class="form-control" id="animalWeight" placeholder="Enter weight" bind="@animal.Weight" />
+    </div>
+    <div class="form-group">
+        <label for="animalTargetWeight">Target Weight</label>
+        <input type="number" class="form-control" id="animalTargetWeight" placeholder="Enter target weight" bind="@animal.TargetWeight" />
+    </div>
+    <div class="form-group">
+        <label for="animalType">Type</label>
+        <select class="form-control" id="animalType" bind="@animal.Type">
+            @foreach (var t in Enum.GetValues(typeof(AnimalType)))
+            {
+                <option>@t.ToString()</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-default" onclick=@Submit>Save</button>
+        <button class="btn" onclick=@Cancel>Cancel</button>
+    </div>
+</form>
+
+@functions
+{
+    [ParameterAttribute]
+    protected Animal animal { get; set; } = null;
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+
+        if (animal == null) animal = new Animal();
+    }
+
+    protected async Task Submit()
+    {
+        await ActionCreators.AddAnimal(Store.Dispatch, Http,animal, UriHelper);
+    }
+
+    protected void Cancel()
+    {
+        ActionCreators.Cancel(Store.Dispatch, UriHelper);
+    }
+}

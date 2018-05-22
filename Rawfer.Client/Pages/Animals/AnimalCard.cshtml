@@ -1,0 +1,44 @@
+﻿@using Rawfer.Shared
+
+<div class="card" style="width: 20rem;">
+    <div class="card-header text-center">
+        @animal.Type
+    </div>
+    <div class="card-body">
+        <div class="container-fluid">
+            <!-- Content here -->
+            <div class="row">
+                <div class="col">
+                    <h5 class="card-title text-center">@animal.Name (@animal.Id)</h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h6 class="card-subtitle mb-2 text-muted text-center">@animal.Breed</h6>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <span class="card-text">Current / Target Weight: @animal.Weight / @animal.TargetWeight</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p class="card-text">Next Appointment</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <button type="button" class="btn btn-primary btn-sm btn-block">Plans</button>
+                    <button type="button" class="btn btn-secondary btn-sm btn-block">Schedule Appointment</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@functions
+{
+[ParameterAttribute]
+protected Animal animal { get; set; }
+}
