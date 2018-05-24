@@ -29,10 +29,47 @@ namespace Rawfer.Client.Logic
             dispatch(new LoadAnimalsAction());
         }
 
-        public static void Cancel(Dispatcher<IAction> dispatch, IUriHelper helper)
+        public static void CancelAddAnimal(Dispatcher<IAction> dispatch, IUriHelper helper)
         {
             dispatch(new CancelAddAction());
             helper.NavigateTo("/animals");
+        }
+
+        public static void CheckUser(Dispatcher<IAction> dispatch, IUriHelper helper)
+        {
+
+        }
+
+        public static async Task CreateUser(Dispatcher<IAction> dispatch, HttpClient http, UserModel user)
+        {
+            dispatch(new CreateUserAction());
+
+            var createdUser = await http.GetJsonAsync<UserModel>("");
+
+            dispatch(new UserCreatedAction());
+        }
+
+        public static async Task Login(Dispatcher<IAction> dispatch, HttpClient http, UserModel user, IUriHelper helper)
+        {
+            dispatch(new ClearUserAction());
+
+            var createdUser = await http.PostJsonAsync<UserModel>("/api/accounts/login", user);
+
+            dispatch(new UserLoggedInAction(createdUser));
+
+            helper.NavigateTo("/");
+        }
+
+        public static async Task LoadLoginProviders(Dispatcher<IAction> dispatch, HttpClient http)
+        {
+            dispatch(new LoadAnimalsAction());
+
+            var providers = await http.GetJsonAsync<SigninProviderViewModel[]>("/api/accounts/providers");
+
+            dispatch(new ReceiveProvidersAction
+            {
+                Providers = providers
+            });
         }
     }
 }

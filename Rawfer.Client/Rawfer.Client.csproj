@@ -29,10 +29,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <BlazorGenerate Remove="Pages\Plans\PlansContainer.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
     <BlazorGenerate Remove="Pages\Sources\Sources.cshtml" />
   </ItemGroup>
 
@@ -54,6 +50,36 @@
 
   <ItemGroup>
     <None Include="Pages\Account\SignIn.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <BlazorGenerate Remove="Pages\Food\FoodList.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <BlazorGenerate Remove="Pages\Plans\PlanList.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <BlazorGenerate Remove="Shared\LoginClassic.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Shared\MainLayout - Copy.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <BlazorGenerate Remove="Shared\LoginLayout.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <BlazorGenerate Remove="Pages\Account\LoginExternal.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <BlazorGenerate Remove="Shared\ValidationError.cshtml" />
   </ItemGroup>
 
 </Project>

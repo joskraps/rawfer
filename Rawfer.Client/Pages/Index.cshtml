@@ -1,7 +1,23 @@
 ﻿@page "/"
 
-<h1>Hello, world!</h1>
+@inherits RawferAppComponent
 
-Welcome to your new app.
+@inject IUriHelper Helper;
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+
+@if (State.User != null)
+{
+    <div>Welcome @State.User.Username</div>
+}
+
+
+@functions{
+
+    protected override void OnInit()
+    {
+        if (State.User == null)
+        {
+            Helper.NavigateTo("/signin");
+        }
+    }
+}

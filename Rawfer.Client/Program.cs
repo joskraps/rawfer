@@ -14,7 +14,7 @@ namespace Rawfer.Client
                 services.AddReduxStore<RawferState, IAction>(new RawferState(), Reducers.RootReducer);
             });
 
-
+            
 
             new BrowserRenderer(serviceProvider).AddComponent<App>("app");
         }

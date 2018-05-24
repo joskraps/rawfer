@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Rawfer.Shared
+﻿namespace Rawfer.Shared
 {
     public class UserModel
     {
@@ -10,6 +6,12 @@ namespace Rawfer.Shared
         public string Username { get; set; }
         public string Token { get; set; }
         public string Password { get; set; }
+    }
+
+    public class SigninProviderViewModel
+    {
+        public string Name { get; set; }
+        public string DisplayName { get; set; }
     }
 
     public class ErrorsModel

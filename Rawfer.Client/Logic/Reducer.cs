@@ -14,7 +14,9 @@ namespace Rawfer.Client.Logic
 
             return new RawferState()
             {
-                Animals  = AnimalReducer(state.Animals,action)
+                Animals = AnimalReducer(state.Animals, action),
+                User = UserReducer(state.User, action),
+                Providers =ProviderReducer(state.Providers, action)
             };
         }
 
@@ -29,6 +31,30 @@ namespace Rawfer.Client.Logic
                     return a.Animals;
                 default:
                     return animals;
+            }
+        }
+        private static UserModel UserReducer(UserModel user, IAction action)
+        {
+            switch (action)
+            {
+                case ClearUserAction _:
+                    return null;
+                case UserLoggedInAction l:
+                    return l.createdUser;
+                default:
+                    return user;
+            }
+        }
+        private static IEnumerable<SigninProviderViewModel> ProviderReducer(IEnumerable<SigninProviderViewModel> providers, IAction action)
+        {
+            switch (action)
+            {
+                case ClearUserAction _:
+                    return null;
+                case ReceiveProvidersAction r:
+                    return r.Providers;
+                default:
+                    return providers;
             }
         }
     }

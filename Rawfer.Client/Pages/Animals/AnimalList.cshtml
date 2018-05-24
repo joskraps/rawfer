@@ -10,14 +10,14 @@
     <hr />
     <button type="button" class="btn btn-secondary btn-sm" onclick=@LoadAnimals>Reload</button>
     <hr />
-    <div class="container-fluid">
-        <div class="row">
-            @foreach (var a in State.Animals)
-            {
-                <div class="col-md-auto">
-                    <AnimalCard animal=@a />
-                </div>
-            }
+    <div class="container-fluid text-center">
+        <div class="row mx-auto">
+                @foreach (var a in State.Animals)
+                {
+                    <div class="col-sm-auto">
+                        <AnimalCard animal=@a />
+                    </div>
+                }
         </div>
 
     </div>

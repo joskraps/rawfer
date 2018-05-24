@@ -1,7 +1,7 @@
 ﻿@page "/addanimal"
 @using Rawfer.Shared
 @inherits RawferAppComponent
-@inject Microsoft.AspNetCore.Blazor.Services.IUriHelper UriHelper
+@inject IUriHelper UriHelper
 @inject HttpClient Http
 
 <form>
@@ -55,6 +55,6 @@
 
     protected void Cancel()
     {
-        ActionCreators.Cancel(Store.Dispatch, UriHelper);
+        ActionCreators.CancelAddAnimal(Store.Dispatch, UriHelper);
     }
 }
