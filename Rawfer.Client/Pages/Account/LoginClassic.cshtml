@@ -28,10 +28,10 @@
     UserModel loginViewModel = new UserModel();
     Dictionary<string, string> _errors = new Dictionary<string, string>();
 
-    //protected override async Task OnInitAsync()
-    //{
-    //    await ActionCreators.Login(Store.Dispatch, Http, new UserModel { Username = "Joel" }, helper);
-    //}
+    protected override async Task OnInitAsync()
+    {
+        await ActionCreators.Login(Store.Dispatch, Http, new UserModel { Username = "Joel" }, helper);
+    }
 
     async Task TryLogin()
     {

@@ -16,10 +16,10 @@ namespace Rawfer.Client.Logic
             {
                 Animals = AnimalReducer(state.Animals, action),
                 User = UserReducer(state.User, action),
-                Providers =ProviderReducer(state.Providers, action)
+                Providers =ProviderReducer(state.Providers, action),
+                FoodItems = FoodItemReducer(state.FoodItems, action)
             };
         }
-
 
         private static IEnumerable<Animal> AnimalReducer(IEnumerable<Animal> animals, IAction action)
         {
@@ -31,6 +31,18 @@ namespace Rawfer.Client.Logic
                     return a.Animals;
                 default:
                     return animals;
+            }
+        }
+        private static IEnumerable<FoodItem> FoodItemReducer(IEnumerable<FoodItem> foodItems, IAction action)
+        {
+            switch (action)
+            {
+                case ClearAnimalsAction _:
+                    return null;
+                case ReceiveFoodsAction a:
+                    return a.FoodItems;
+                default:
+                    return foodItems;
             }
         }
         private static UserModel UserReducer(UserModel user, IAction action)

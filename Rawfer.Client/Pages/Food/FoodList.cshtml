@@ -1,3 +1,63 @@
-﻿@page "/food"
+﻿@page "/foodItems"
+@inherits RawferAppComponent
+@inject HttpClient Http
 
-<h1>Plans</h1>
+<h1>Food</h1>
+@*TODO Make this an action*@
+@*<button type="button" class="btn btn-secondary btn-sm" onclick=@AddFoodItem>Add Food Item</button>*@
+
+@if (State.FoodItems != null)
+{
+    <hr />
+    <button type="button" class="btn btn-secondary btn-sm" onclick=@LoadFood>Reload</button>
+    <hr />
+    <div class="container-fluid text-center">
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var fi in State.FoodItems)
+                {
+                    <tr>
+                        <th scope="row">@fi.Id</th>
+                        <td>@fi.Name</td>
+                        <td>@fi.Type</td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+
+
+    </div>
+}
+else
+{
+    <p>Loading food...</p>
+}
+
+
+
+@functions
+{
+
+protected override async Task OnInitAsync()
+{
+    await ActionCreators.LoadFood(Store.Dispatch, Http);
+}
+
+protected async Task LoadFood()
+{
+    await ActionCreators.LoadFood(Store.Dispatch, Http);
+}
+
+protected async Task AddFoodItem()
+{
+    //await ActionCreators.(Store.Dispatch, Http);
+}
+}

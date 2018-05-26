@@ -82,4 +82,8 @@
     <BlazorGenerate Remove="Shared\ValidationError.cshtml" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ComponentModels\" />
+  </ItemGroup>
+
 </Project>

@@ -61,6 +61,8 @@ namespace Rawfer.Server
             services.AddScoped<IConnectionWrapper, ConnectionWrapper>();
             services.AddScoped<IAnimalService, AnimalService>();
             services.AddScoped<IAnimalRepository, AnimalRepository>();
+            services.AddScoped<IFoodService, FoodService>();
+            services.AddScoped<IFoodItemRepository, FoodItemRepository>();
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>

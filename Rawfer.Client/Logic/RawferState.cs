@@ -7,6 +7,7 @@ namespace Rawfer.Client.Logic
     {
         public UserModel User { get; set; }
         public IEnumerable<Animal> Animals { get; set; }
+        public IEnumerable<FoodItem> FoodItems { get; set; }
         public IEnumerable<SigninProviderViewModel> Providers { get; internal set; }
     }
 }

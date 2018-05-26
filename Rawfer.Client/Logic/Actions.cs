@@ -11,8 +11,7 @@ namespace Rawfer.Client.Logic
     {
         public Animal Animal { get; set; }
     }
-
-    public class CancelAddAction : IAction { }
+    public class CancelAnimalAdd : IAction { }
     public class ReceiveAnimalsAction : IAction
     {
         public IEnumerable<Animal> Animals { get; set; }
@@ -36,5 +35,18 @@ namespace Rawfer.Client.Logic
     public class ReceiveProvidersAction : IAction
     {
         public IEnumerable<SigninProviderViewModel> Providers { get; set; }
+    }
+
+    public class AddFoodAction : IAction { }
+    public class LoadFoodsAction : IAction { }
+    public class ClearFoodsAction : IAction { }
+    public class EditFood : IAction
+    {
+        public FoodItem Food { get; set; }
+    }
+    public class CancelFoodAdd : IAction { }
+    public class ReceiveFoodsAction : IAction
+    {
+        public IEnumerable<FoodItem> FoodItems { get; set; }
     }
 }
