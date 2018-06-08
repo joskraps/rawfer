@@ -1,9 +1,7 @@
 ﻿using Dapper;
 using Rawfer.Shared;
-using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 
 namespace Rawfer.Repository
 {
@@ -25,7 +23,8 @@ namespace Rawfer.Repository
         public IEnumerable<FoodItem> GetFoodForUsers()
         {
             var user = 1;
-            return connectionWrapper.GetConnection().Query<FoodItem>("GetFoodForUser", new {UserId = user }, commandType: CommandType.StoredProcedure);
+
+            return connectionWrapper.GetConnection().Query<FoodItem>("GetFoodItemsForUser", new {UserId = user }, commandType: CommandType.StoredProcedure);
         }
 
         public void AddFoodItem(FoodItem animal)

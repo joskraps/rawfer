@@ -8,7 +8,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{0db9d6e7-e0cc-46c3-9093-e16f0266c6a2}</ProjectGuid>
-    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.SqlAzureV12DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
@@ -68,5 +68,7 @@
     <Build Include="dbo\Tables\Animals.sql" />
     <Build Include="dbo\Stored Procedures\GetAnimalsForUser.sql" />
     <Build Include="dbo\Stored Procedures\AddAnimalForUser.sql" />
+    <Build Include="dbo\Tables\FoodItems.sql" />
+    <Build Include="dbo\Stored Procedures\GetFoodItemsForUser.sql" />
   </ItemGroup>
 </Project>

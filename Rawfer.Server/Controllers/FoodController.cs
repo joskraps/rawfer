@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Rawfer.Business;
@@ -22,29 +21,7 @@ namespace Rawfer.Server.Controllers
         [HttpGet("")]
         public IEnumerable<FoodItem> GetFood()
         {
-            return new List<FoodItem>
-            {
-                new FoodItem
-                {
-                    Id = 1,
-                    Name = "Beef Supreme Mix",
-                    Type = FoodType.Meat,
-                    ProteinPercent = "80.00",
-                    FatPercent = "10.00",
-                    FiberPercent = "15.00",
-                    MoisturePercent = "75.00"
-                },                new FoodItem
-                {
-                    Id = 2,
-                    Name = "Beaver Mix",
-                    Type = FoodType.Meat,
-                    ProteinPercent = "80.00",
-                    FatPercent = "10.00",
-                    FiberPercent = "15.00",
-                    MoisturePercent = "75.00"
-                }
-            };
-            //return foodItemService.GetFoodItems();
+            return foodItemService.GetFoodItems();
         }
 
         [HttpPost("")]

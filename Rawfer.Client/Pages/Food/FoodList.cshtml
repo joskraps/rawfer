@@ -18,16 +18,24 @@
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
                     <th scope="col">Type</th>
+                    <th scope="col">Protein %</th>
+                    <th scope="col">Fat %</th>
+                    <th scope="col">Fiber %</th>
+                    <th scope="col">Moisture %</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var fi in State.FoodItems)
                 {
-                    <tr>
-                        <th scope="row">@fi.Id</th>
-                        <td>@fi.Name</td>
-                        <td>@fi.Type</td>
-                    </tr>
+                <tr>
+                    <th scope="row">@fi.Id</th>
+                    <td>@fi.Name</td>
+                    <td>@fi.Type</td>
+                    <td>@fi.ProteinPercent</td>
+                    <td>@fi.FatPercent</td>
+                    <td>@fi.FiberPercent</td>
+                    <td>@fi.MoisturePercent</td>
+                </tr>
                 }
 
             </tbody>
@@ -40,7 +48,6 @@ else
 {
     <p>Loading food...</p>
 }
-
 
 
 @functions
@@ -61,3 +68,4 @@ protected async Task AddFoodItem()
     //await ActionCreators.(Store.Dispatch, Http);
 }
 }
+
