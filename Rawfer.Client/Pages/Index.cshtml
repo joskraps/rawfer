@@ -1,6 +1,6 @@
 ﻿@page "/"
 
-@inherits RawferAppComponent
+@inherits Rawfer.Client.Logic.RawferAppComponent
 
 @inject IUriHelper Helper;
 
@@ -8,16 +8,25 @@
 @if (State.User != null)
 {
     <div>Welcome @State.User.Username</div>
+} else
+{
+    <div class="auth-page">
+        <div class="container-flex text-center">
+            <div class="row">
+                <div class="col">
+                    <h1 class="text-xs-center">Sign in</h1>
+                    <p class="text-xs-center">
+                        <a href="/signup">Need an account?</a>
+                    </p>
+                    <LoginClassic />
+                    <LoginExternal />
+                </div>
+            </div>
+        </div>
+    </div>
 }
 
 
 @functions{
 
-    protected override void OnInit()
-    {
-        if (State.User == null)
-        {
-            Helper.NavigateTo("/signin");
-        }
-    }
 }

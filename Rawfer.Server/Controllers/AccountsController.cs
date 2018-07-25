@@ -13,6 +13,8 @@ using System.Threading.Tasks;
 
 namespace Rawfer.Server.Controllers
 {
+    using Rawfer.Shared.Models;
+
     [Produces("application/json")]
     [Route("api/Accounts")]
     [Authorize]

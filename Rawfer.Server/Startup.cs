@@ -1,23 +1,29 @@
 ﻿// Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Blazor.Server;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.ResponseCompression;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft.Json.Serialization;
-using Rawfer.Business;
-using Rawfer.Repository;
-using Rawfer.Shared;
-using System.Linq;
-using System.Net.Mime;
-
 namespace Rawfer.Server
 {
+    using System.Linq;
+    using System.Net.Mime;
+
+    using Microsoft.AspNetCore.Authentication.Cookies;
+    using Microsoft.AspNetCore.Blazor.Server;
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.ResponseCompression;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+
+    using Newtonsoft.Json.Serialization;
+
+    using Rawfer.Shared;
+    using Rawfer.Shared.Repositories;
+    using Rawfer.Shared.Services;
+
+    using Tiddly.Sql.DataAccess;
+
+    // ReSharper disable once UnusedMember.Global
     public class Startup
     {
         public Startup(IConfiguration config)
@@ -25,7 +31,7 @@ namespace Rawfer.Server
             // Configuration from appsettings.json has already been loaded by
             // CreateDefaultBuilder on WebHost in Program.cs. Use DI to load
             // the configuration into the Configuration property.
-            Configuration = config;
+            this.Configuration = config;
         }
 
         public IConfiguration Configuration { get; set; }
@@ -57,12 +63,11 @@ namespace Rawfer.Server
             .AddUserStore<UserStore>()
             .AddDefaultTokenProviders();
 
-            services.AddSingleton(new ConnectionConfig() { DbConnection = Configuration["DbConnection"] });
-            services.AddScoped<IConnectionWrapper, ConnectionWrapper>();
             services.AddScoped<IAnimalService, AnimalService>();
             services.AddScoped<IAnimalRepository, AnimalRepository>();
             services.AddScoped<IFoodService, FoodService>();
             services.AddScoped<IFoodItemRepository, FoodItemRepository>();
+            services.AddSingleton(new SqlDataAccess(this.Configuration["DbConnection"]));
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>

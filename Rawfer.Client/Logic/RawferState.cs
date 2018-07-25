@@ -1,13 +1,17 @@
-﻿using Rawfer.Shared;
-using System.Collections.Generic;
-
-namespace Rawfer.Client.Logic
+﻿namespace Rawfer.Client.Logic
 {
+    using System.Collections.Generic;
+    using Rawfer.Shared;
+    using Rawfer.Shared.Models;
+
     public class RawferState
     {
-        public UserModel User { get; set; }
         public IEnumerable<Animal> Animals { get; set; }
+
         public IEnumerable<FoodItem> FoodItems { get; set; }
+
         public IEnumerable<SigninProviderViewModel> Providers { get; internal set; }
+
+        public UserModel User { get; set; }
     }
 }
